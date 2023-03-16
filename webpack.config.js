@@ -10,7 +10,7 @@
      },
 
      resolve: {
-       extensions: ['.tsx', '.ts', '.js', '.jsx'],
+       extensions: ['.tsx', '.ts', '.js', '.jsx', '.scss', '.png', '.svg'],
      },
 
      module: {
@@ -25,13 +25,27 @@
              },
            },
          },
+         {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+              'style-loader',
+              'css-loader',
+              'sass-loader'
+          ]
+      },
+      {
+          test: /\.svg$/,
+          exclude: /node_modules/,
+          use: ['svg-loader']
+      }
        ],
      },
 
      plugins: [
        new HtmlWebpackPlugin({
          template: path.resolve(__dirname, 'client', 'public', 'index.html'),
-         favicon: path.resolve(__dirname, 'client', 'public', 'favicon.ico'),
+         favicon: path.resolve(__dirname, 'client', 'public', 'favicon.ico')
        }),
      ],
    };
